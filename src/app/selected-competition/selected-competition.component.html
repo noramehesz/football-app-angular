@@ -2,7 +2,8 @@
 <div *ngIf="competition">
   <ul>
     <li *ngFor="let match of competition.matches">
-      HomeTeam: {{ match.homeTeam.name }} \n AwayTeam: {{ match.awayTeam.name }}
+      HomeTeam: {{ match.homeTeam.name }} AwayTeam: {{ match.awayTeam.name }}
+      <span *ngIf="isLive(match)"> LIVE </span>
     </li>
   </ul>
 </div>

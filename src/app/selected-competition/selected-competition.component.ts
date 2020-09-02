@@ -26,4 +26,8 @@ export class SelectedCompetitionComponent implements OnInit {
       console.log(comp);
     });
   }
+
+  isLive(match: any) {
+    return match.status === 'LIVE';
+  }
 }

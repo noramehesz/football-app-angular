@@ -24,7 +24,7 @@ export class CompetitionsService {
 
   getCompetitions(): Observable<object> {
     return this.http
-      .get(`${this.baseUrl}competitions?plan=TIER_ONE`, this.httpOptions)
+      .get(`${this.baseUrl}competitions?plan=TIER_ONE `, this.httpOptions)
       .pipe(
         tap(
           () => {},
