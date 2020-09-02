@@ -23,17 +23,32 @@ export class CompetitionsService {
   constructor(private http: HttpClient) {}
 
   getCompetitions(): Observable<object> {
-    return this.http.get(`${this.baseUrl}competitions/`, this.httpOptions).pipe(
-      tap(
-        () => {},
-        (err) => {
-          this.handleError('getCompetitions', err);
-        }
-      )
-    );
+    return this.http
+      .get(`${this.baseUrl}competitions?plan=TIER_ONE`, this.httpOptions)
+      .pipe(
+        tap(
+          () => {},
+          (err) => {
+            this.handleError('getCompetitions', err);
+          }
+        )
+      );
   }
 
   handleError(operation = 'op', err: any) {
     console.error(err);
+  }
+
+  getCompetitionById(id: number) {
+    return this.http
+      .get(`${this.baseUrl}competitions/${id}/matches`, this.httpOptions)
+      .pipe(
+        tap(
+          () => {},
+          (err) => {
+            this.handleError('getCompetitionById', err);
+          }
+        )
+      );
   }
 }

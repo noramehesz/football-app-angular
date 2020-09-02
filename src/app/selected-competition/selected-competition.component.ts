@@ -8,13 +8,22 @@ import { CompetitionsService } from '../competitions.service';
   styleUrls: ['./selected-competition.component.css'],
 })
 export class SelectedCompetitionComponent implements OnInit {
-  selectedCompetition;
+  @Input() selectedCompetitionId: number;
+  competition;
 
   constructor(
     private route: ActivatedRoute,
-    private competitionService: CompetitionsService,
-    private location: Location
+    private competitionService: CompetitionsService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getCompetition(this.selectedCompetitionId);
+  }
+
+  getCompetition(id: number) {
+    this.competitionService.getCompetitionById(id).subscribe((comp: any) => {
+      this.competition = comp;
+      console.log(comp);
+    });
+  }
 }

@@ -1,1 +1,8 @@
-<p>selected-competition works!</p>
+<h2>Yous select a competition</h2>
+<div *ngIf="competition">
+  <ul>
+    <li *ngFor="let match of competition.matches">
+      HomeTeam: {{ match.homeTeam.name }} \n AwayTeam: {{ match.awayTeam.name }}
+    </li>
+  </ul>
+</div>
