@@ -1,9 +1,11 @@
-<h2>Yous select a competition</h2>
-<div *ngIf="competition">
+<h2>{{competitionName}}</h2>
+<div *ngIf="matches">
   <ul>
-    <li *ngFor="let match of competition.matches">
-      HomeTeam: {{ match.homeTeam.name }} AwayTeam: {{ match.awayTeam.name }}
-      <span *ngIf="isLive(match)"> LIVE </span>
+    <li *ngFor="let match of matches.matches">
+     <a routerLink="/{{competitionName}}/{{match.homeTeam.name}}-vs-{{match.awayTeam.name}}"> 
+      HomeTeam: {{ match.homeTeam.name }} AwayTeam: {{ match.awayTeam.name }} 
+    </a>
+     <p *ngIf="isLive(match.status)">LIVE</p>
     </li>
   </ul>
 </div>

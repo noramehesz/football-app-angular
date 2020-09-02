@@ -3,7 +3,7 @@
   <ul>
     <li *ngFor="let comp of competitions">
       <a
-        routerLink="/{{ comp.name }}"
+        routerLink="/{{comp.name}}"
         (click)="handleCompetitionOnClick(comp.id)"
       >
         {{ comp.name }}

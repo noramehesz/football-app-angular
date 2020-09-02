@@ -39,14 +39,14 @@ export class CompetitionsService {
     console.error(err);
   }
 
-  getCompetitionById(id: number) {
+  getMatchesForCompetition(id: number) {
     return this.http
       .get(`${this.baseUrl}competitions/${id}/matches`, this.httpOptions)
       .pipe(
         tap(
           () => {},
           (err) => {
-            this.handleError('getCompetitionById', err);
+            this.handleError('getMatchesForCompetition', err);
           }
         )
       );

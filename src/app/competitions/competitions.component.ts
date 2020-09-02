@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+  import { Component, OnInit } from '@angular/core';
 import { CompetitionsService } from '../competitions.service';
+import { ShareCompetitionsService } from '../share-competitions.service';
 
 @Component({
   selector: 'app-competitions',
@@ -10,16 +11,23 @@ export class CompetitionsComponent implements OnInit {
   competitions;
   selectedCompetitionId: number;
 
-  constructor(private competitionService: CompetitionsService) {}
+  constructor(private competitionService: CompetitionsService, private shareData: ShareCompetitionsService) {}
 
   ngOnInit() {
-    this.getCompetitions();
+    if (!this.shareData.getCompetitions()) {
+      this.getCompetitions();
+    } else {
+      this.competitions = this.shareData.getCompetitions();
+    }
   }
 
   getCompetitions(): void {
     this.competitionService
       .getCompetitions()
-      .subscribe((comps: any) => (this.competitions = comps.competitions));
+      .subscribe((comps: any) => {
+        this.competitions = comps.competitions; 
+        this.shareData.setCompetitions(comps.competitions)
+      });
   }
 
   handleCompetitionOnClick(id: number) {
