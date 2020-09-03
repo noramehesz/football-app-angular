@@ -1,3 +1,61 @@
-body {
+.selectedCompetitionDiv {
+    margin-left: 10px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 3px;
+    background: #313A3A3A;
+    padding-left: 0;
+    padding-right: 0;
+    
+}
+
+.selectedName {
+    margin-block-start: 0;
+    font-family: sans-serif;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    border-bottom: 1px solid #313A3A;
+    padding-bottom: 5px;
+}
+
+.nameH2 {
     margin: 0;
+    font-family: sans-serif;
+    font-size: 15px;
+}
+
+.matchesList {
+    
+}
+
+.listUl {
+    margin: 0;
+}
+
+.chooser {
+    display: flex;
+}
+
+.liveMatchOption {
+    width: 50%;
+    text-align: center;
+    
+}
+
+.liveMatchOption:hover {
+    cursor: pointer;
+}
+
+.notLiveMatchOption {
+    width: 50%;
+    text-align: center;
+}
+
+.notLiveMatchOption:hover {
+    cursor: pointer;
+}
+
+.active {
+    background-color: #6969693A;
 }

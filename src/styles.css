@@ -4,6 +4,7 @@ body {
     background: #3D4849;
 }
 
-.appName {
-    color: white,
+a, a:link, a:visited {
+    text-decoration: none;
+    color: lightgray;
 }

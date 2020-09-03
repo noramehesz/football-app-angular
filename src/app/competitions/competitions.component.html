@@ -1,13 +1,17 @@
-<p>Competitions</p>
-<div>
-  <ul>
-    <li *ngFor="let comp of competitions">
-      <a
-        routerLink="/{{comp.name}}"
-        (click)="handleCompetitionOnClick(comp.id)"
-      >
-        {{ comp.name }}
-      </a>
-    </li>
-  </ul>
+<div class="competitions">
+  <div class="football">
+    <p class="pForCompetitions">FOOTBALL COMPETITIONS</p>
+  </div>
+  <div>
+    <ul class="competitionList">
+      <li *ngFor="let comp of competitions" class="competitionListItem">
+        <a 
+          routerLink="/{{comp.name}}"
+          (click)="handleCompetitionOnClick(comp.id)"
+        >
+          {{ comp.name }}
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>

@@ -1,11 +1,23 @@
-<h2>{{competitionName}}</h2>
-<div *ngIf="matches">
-  <ul>
-    <li *ngFor="let match of matches.matches">
-     <a routerLink="/{{competitionName}}/{{match.id}}"> 
-      HomeTeam: {{ match.homeTeam.name }} AwayTeam: {{ match.awayTeam.name }} 
-    </a>
-     <p *ngIf="isLive(match.status)">LIVE</p>
-    </li>
-  </ul>
+<div class="selectedCompetitionDiv">
+  <div class="selectedName">
+    <h2 class="nameH2">{{competitionName}}</h2>
+  </div>
+  <div class="chooser">
+    <div class="liveMatchOption" (click)="handleLiveOnClick()" [class.active]="showLiveMathes">
+      <span>LIVE</span>
+    </div>
+    <div class="notLiveMatchOption" (click)="handleOtherOnClick()" [class.active]="!showLiveMathes">
+      <span>OTHER MATCHES</span>
+    </div>
+  </div>
+  <div *ngIf="matches" class="matchesList">
+    <ul class="listUl" >
+      <li *ngFor="let match of matches.matches">
+      <a routerLink="/{{competitionName}}/{{match.id}}"> 
+        HomeTeam: {{ match.homeTeam.name }} AwayTeam: {{ match.awayTeam.name }} 
+      </a>
+      <p *ngIf="isLive(match.status)">LIVE</p>
+      </li>
+    </ul>
+  </div>
 </div>

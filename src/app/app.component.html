@@ -1,10 +1,10 @@
 <div class="navBar">
-    <h2 className="'appName'">Football App</h2>
+    <h2 class="appName" [ngStyle]="{'color': 'white'}">Football App</h2>
+    <div class="buttons">
+        <button class="buttonLogin">Login</button>
+        <button class="buttonSignup">Sign up</button>
+    </div>
 </div>
-<nav>
-    <a routerLink=""></a>
-    <a routerLink="/:id"></a>
-    <a routeLink="/:id/:id"></a>
-</nav>
+
 <router-outlet></router-outlet>
 

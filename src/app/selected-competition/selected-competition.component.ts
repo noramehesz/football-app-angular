@@ -11,6 +11,9 @@ import { ShareCompetitionsService } from '../share-competitions.service';
 export class SelectedCompetitionComponent implements OnInit {
   matches;
   competitionName: string;
+  showLiveMathes: boolean = true;
+  liveMatches;
+  otherMatches;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,16 +33,26 @@ export class SelectedCompetitionComponent implements OnInit {
       })[0].id as number;
       this.getMatches(id);
     })
-   
   }
 
   getMatches(competitionId: number) {
     this.competitionService.getMatchesForCompetition(competitionId).subscribe((matches: any) => {
       this.matches = matches;
+      console.log(matches);
+      this.liveMatches = matches.matches.filter((match: any) => {return match.match.status === "LIVE"});
+      this.otherMatches = matches.matches.filter((match: any) => {return match.match.status !== "LIVE"});
     });
   }
 
   isLive(match: any) {
     return match.status === 'LIVE';
+  }
+
+  handleLiveOnClick() {
+    this.showLiveMathes = true;
+  }
+
+  handleOtherOnClick() {
+    this.showLiveMathes = false;
   }
 }
