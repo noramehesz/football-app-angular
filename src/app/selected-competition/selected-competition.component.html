@@ -2,7 +2,7 @@
 <div *ngIf="matches">
   <ul>
     <li *ngFor="let match of matches.matches">
-     <a routerLink="/{{competitionName}}/{{match.homeTeam.name}}-vs-{{match.awayTeam.name}}"> 
+     <a routerLink="/{{competitionName}}/{{match.id}}"> 
       HomeTeam: {{ match.homeTeam.name }} AwayTeam: {{ match.awayTeam.name }} 
     </a>
      <p *ngIf="isLive(match.status)">LIVE</p>

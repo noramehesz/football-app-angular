@@ -19,13 +19,18 @@ export class SelectedCompetitionComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    let league: string = this.route.snapshot.paramMap.get('id');
-    this.competitionName = league.replace(/\s/g, '');
-    let id: number = this.shareData.getCompetitions().filter(comp => {
-      return comp.name === league;
-    })[0].id as number;
-    console.log(id);
-    this.getMatches(id);
+    let league: string = this.route.snapshot.paramMap.get('competition');
+    console.log(league);
+    this.competitionName = league;
+    let id: number;
+    this.competitionService.getCompetitions().subscribe((comps: any) => {
+      console.log(comps.competitions);
+      id = comps.competitions.filter((comp: any) => {
+        return comp.name === league;
+      })[0].id as number;
+      this.getMatches(id);
+    })
+   
   }
 
   getMatches(competitionId: number) {

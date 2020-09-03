@@ -51,4 +51,16 @@ export class CompetitionsService {
         )
       );
   }
+
+  getMatchDetailsById(id: string) {
+    return this.http.get(`${this.baseUrl}matches/${id}`, this.httpOptions)
+    .pipe(
+      tap(
+        () => {},
+        (err) => {
+          this.handleError('getMatchDetailsById', err);
+        }
+      )
+    )
+  }
 }
