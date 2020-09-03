@@ -27,7 +27,6 @@ export class SelectedCompetitionComponent implements OnInit {
     this.competitionName = league;
     let id: number;
     this.competitionService.getCompetitions().subscribe((comps: any) => {
-      console.log(comps.competitions);
       id = comps.competitions.filter((comp: any) => {
         return comp.name === league;
       })[0].id as number;
@@ -39,8 +38,8 @@ export class SelectedCompetitionComponent implements OnInit {
     this.competitionService.getMatchesForCompetition(competitionId).subscribe((matches: any) => {
       this.matches = matches;
       console.log(matches);
-      this.liveMatches = matches.matches.filter((match: any) => {return match.match.status === "LIVE"});
-      this.otherMatches = matches.matches.filter((match: any) => {return match.match.status !== "LIVE"});
+      this.liveMatches = matches.matches.filter((match: any) => {return match.status === "LIVE"});
+      this.otherMatches = matches.matches.filter((match: any) => {return match.status !== "LIVE"});
     });
   }
 

@@ -11,12 +11,18 @@
     </div>
   </div>
   <div *ngIf="matches" class="matchesList">
-    <ul class="listUl" >
-      <li *ngFor="let match of matches.matches">
-      <a routerLink="/{{competitionName}}/{{match.id}}"> 
-        HomeTeam: {{ match.homeTeam.name }} AwayTeam: {{ match.awayTeam.name }} 
-      </a>
-      <p *ngIf="isLive(match.status)">LIVE</p>
+    <ul *ngIf="showLiveMathes">
+      <li *ngFor="let match of liveMatches">
+        <a routerLink="/{{competitionName}}/{{match.id}}"> 
+          HomeTeam: {{ match.homeTeam.name }} AwayTeam: {{ match.awayTeam.name }} 
+        </a>
+      </li>
+    </ul>
+    <ul *ngIf="!showLiveMathes">
+      <li *ngFor="let match of otherMatches">
+        <a routerLink="/{{competitionName}}/{{match.id}}"> 
+          HomeTeam: {{ match.homeTeam.name }} AwayTeam: {{ match.awayTeam.name }} 
+        </a>
       </li>
     </ul>
   </div>

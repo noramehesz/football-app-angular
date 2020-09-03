@@ -54,7 +54,6 @@ export class MatchDetailsComponent implements OnInit {
         data.teams.homeTeam = details.match.homeTeam.name;
         data.teams.awayTeam = details.match.awayTeam.name; 
         this.matchDetails = data;
-        console.log(data);
       }
     )
   }
