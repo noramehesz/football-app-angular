@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CompetitionsService } from '../competitions.service';
-import { ShareCompetitionsService } from '../share-competitions.service';
 
 interface Match {
   homeTeam: string;
@@ -27,12 +26,10 @@ export class SelectedCompetitionComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private competitionService: CompetitionsService,
-    private shareData: ShareCompetitionsService,
   ) {}
 
   ngOnInit() {
     let league: string = this.route.snapshot.paramMap.get('competition');
-    console.log(league);
     this.competitionName = league;
     let id: number;
     this.competitionService.getCompetitions().subscribe((comps: any) => {
@@ -46,11 +43,10 @@ export class SelectedCompetitionComponent implements OnInit {
   getMatches(competitionId: number) {
     this.competitionService.getMatchesForCompetition(competitionId).subscribe((matches: any) => {
       this.matches = matches;
-      console.log(matches);
       // Live matches, which status can be LIVE or IN_PLAY
       let livematches = matches.matches.filter((match: any) => {return match.status === "LIVE" || match.status === "IN_PLAY"});
       this.liveMatches = livematches.map((match) => {
-        let data: Match = {homeTeam: '', awayTeam: '', date: {}};
+        let data: Match = {homeTeam: '', awayTeam: '', date: {}, id:''};
         data.awayTeam = match.awayTeam.name;
         data.homeTeam = match.homeTeam.name;
         let dateNtime = new Date(match.utcDate);

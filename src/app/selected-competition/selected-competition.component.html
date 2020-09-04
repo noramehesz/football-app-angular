@@ -13,7 +13,7 @@
   <div *ngIf="matches" class="matchesList">
     <ul *ngIf="showLiveMathes" class="OngoingUl">
       <li *ngFor="let match of liveMatches">
-        <div [routerLink]="'/'+competitionName+'/'+match.id" class="oneMatchDiv">
+        <div [routerLink]="'/'+competitionName+'/match/'+match.id" class="oneMatchDiv">
           <span class="topSpan">
             FOOTBALL
           </span>
@@ -34,7 +34,7 @@
     </ul>
     <ul *ngIf="!showLiveMathes" class="OngoingUl">
         <li *ngFor="let match of otherMatches">
-          <div [routerLink]="'/'+competitionName+'/'+match.id" class="oneMatchDiv">
+          <div [routerLink]="'/'+competitionName+'/match/'+match.id" class="oneMatchDiv">
             <span class="topSpan">
               FOOTBALL
             </span>

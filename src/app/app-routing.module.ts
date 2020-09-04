@@ -7,7 +7,7 @@ import { MatchDetailsComponent } from './match-details/match-details.component';
 const routes: Routes = [
   { path: '', component: CompetitionsComponent },
   { path: ':competition', component: SelectedCompetitionComponent },
-  { path: ':competition/:matchId', component: MatchDetailsComponent}
+  { path: ':competition/match/:matchId', component: MatchDetailsComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

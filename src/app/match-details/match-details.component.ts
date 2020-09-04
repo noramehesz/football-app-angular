@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CompetitionsService } from '../competitions.service';
-import { ShareCompetitionsService } from '../share-competitions.service';
 
 interface MatchDetails {
   competitionName?: string;
@@ -21,12 +20,11 @@ interface MatchDetails {
 export class MatchDetailsComponent implements OnInit {
   competitionName: string;
   matchId: string;
-  matchDetails;
+  matchDetails: MatchDetails;
 
   constructor(
     private route: ActivatedRoute,
     private competitionService: CompetitionsService,
-    private shareData: ShareCompetitionsService,
   ) { }
 
   ngOnInit() {
@@ -35,7 +33,6 @@ export class MatchDetailsComponent implements OnInit {
     this.matchId = this.route.snapshot.paramMap.get('matchId');
     let competitionId;
     this.competitionService.getCompetitions().subscribe((comp: any) => { 
-      console.log(comp.competitions)
       competitionId = comp.competitions.filter(c => {return c.name === this.competitionName})[0].id;
       this.getMatchDetailsById(competitionId, this.matchId);
     });
@@ -43,7 +40,6 @@ export class MatchDetailsComponent implements OnInit {
 
   getMatchDetailsById(compId: string, id: string) {
     this.competitionService.getMatchDetailsById(id).subscribe((details: any) => {
-      console.log(details);
         let data: MatchDetails = {};
         data.competitionName = details.match.competition.name;
         data.date = details.match.utcDate;
