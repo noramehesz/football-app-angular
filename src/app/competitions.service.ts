@@ -7,16 +7,11 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class CompetitionsService {
-  private baseUrl = '/api/';
+  private baseUrl = 'https://api.football-data.org/v2/';
   private token = '268441ffe8a44c0bb3c81c41f467bf07';
   httpOptions = {
     headers: new HttpHeaders({
-      'Acces-Control-Allow-Origin': '*',
-      'Acces-Control-Allow-Headers':
-        'acces-control-allow-headers, acces-control-allow-origin ,x-auth-token, content-type, x-response-control, Authorization, origin, accept, X-Requested-With',
-      'Acces-Control-Allow-Method': '*',
       'X-Auth-Token': this.token,
-      'Content-Type': 'text/plain',
     }),
   };
 

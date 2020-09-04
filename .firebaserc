@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "football-app-64fd7"
+  },
+  "targets": {
+    "football-app-64fd7": {
+      "hosting": {
+        "football-app": [
+          "football-app-64fd7"
+        ]
+      }
+    }
+  }
+}
