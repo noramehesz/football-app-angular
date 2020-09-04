@@ -3,6 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { CompetitionsService } from '../competitions.service';
 import { ShareCompetitionsService } from '../share-competitions.service';
 
+interface Match {
+  homeTeam: string;
+  awayTeam: string;
+  date: any;
+}
+
 @Component({
   selector: 'app-selected-competition',
   templateUrl: './selected-competition.component.html',
@@ -12,8 +18,9 @@ export class SelectedCompetitionComponent implements OnInit {
   matches;
   competitionName: string;
   showLiveMathes: boolean = true;
-  liveMatches;
-  otherMatches;
+  liveMatches: [];
+  otherMatches: Match[] = [];
+  isLiveEmpty: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,8 +45,19 @@ export class SelectedCompetitionComponent implements OnInit {
     this.competitionService.getMatchesForCompetition(competitionId).subscribe((matches: any) => {
       this.matches = matches;
       console.log(matches);
-      this.liveMatches = matches.matches.filter((match: any) => {return match.status === "LIVE"});
-      this.otherMatches = matches.matches.filter((match: any) => {return match.status !== "LIVE"});
+      // Live matches, which status can be LIVE or IN_PLAY
+      this.liveMatches = matches.matches.filter((match: any) => {return match.status === "LIVE" || match.status === "IN_PLAY"});
+      // Ongoing matches, probably SCHEDULEDs are good for this 
+      let othermatches = matches.matches.filter((match: any) => {return match.status === "SCHEDULED"});
+      this.otherMatches = othermatches.map((match:any) => {
+        let data: Match = {homeTeam: '', awayTeam: '', date: {}};
+        data.awayTeam = match.awayTeam.name;
+        data.homeTeam = match.homeTeam.name;
+        data.date = match.utcDate;
+        return data;
+      });
+      console.log(this.otherMatches);
+      this.isLiveEmpty = this.liveMatches.length === 0;
     });
   }
 

@@ -4,10 +4,10 @@
   </div>
   <div class="chooser">
     <div class="liveMatchOption" (click)="handleLiveOnClick()" [class.active]="showLiveMathes">
-      <span>LIVE</span>
+      <span class="optionSpan">LIVE</span>
     </div>
     <div class="notLiveMatchOption" (click)="handleOtherOnClick()" [class.active]="!showLiveMathes">
-      <span>OTHER MATCHES</span>
+      <span class="optionSpan">OTHER MATCHES</span>
     </div>
   </div>
   <div *ngIf="matches" class="matchesList">
@@ -17,13 +17,27 @@
           HomeTeam: {{ match.homeTeam.name }} AwayTeam: {{ match.awayTeam.name }} 
         </a>
       </li>
+      <span *ngIf="isLiveEmpty" class="noLiveMatch">
+          Currently there is no live match
+      </span>
     </ul>
-    <ul *ngIf="!showLiveMathes">
-      <li *ngFor="let match of otherMatches">
-        <a routerLink="/{{competitionName}}/{{match.id}}"> 
-          HomeTeam: {{ match.homeTeam.name }} AwayTeam: {{ match.awayTeam.name }} 
-        </a>
-      </li>
+    <ul *ngIf="!showLiveMathes" class="OngoingUl">
+        <li *ngFor="let match of otherMatches">
+          <div routerLink="/{{competitionName}}/{{match.id}}" class="oneMatchDiv">
+            <span class="topSpan">
+              FOOTBALL
+            </span>
+          <span class="TeamSpan"> 
+            {{ match.homeTeam }} 
+          </span>
+          <span class="TeamSpan">
+            {{ match.awayTeam }}
+          </span>
+          <span class="dateSpan">
+            {{ match.date }}
+          </span>
+        </div>  
+        </li>
     </ul>
   </div>
 </div>
