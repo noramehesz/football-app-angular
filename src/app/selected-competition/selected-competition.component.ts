@@ -7,6 +7,7 @@ interface Match {
   homeTeam: string;
   awayTeam: string;
   date: any;
+  id: string;
 }
 
 @Component({
@@ -18,9 +19,10 @@ export class SelectedCompetitionComponent implements OnInit {
   matches;
   competitionName: string;
   showLiveMathes: boolean = true;
-  liveMatches: [];
+  liveMatches: Math[] = [];
   otherMatches: Match[] = [];
   isLiveEmpty: boolean = true;
+  isOngoingEmpty: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,17 +48,31 @@ export class SelectedCompetitionComponent implements OnInit {
       this.matches = matches;
       console.log(matches);
       // Live matches, which status can be LIVE or IN_PLAY
-      this.liveMatches = matches.matches.filter((match: any) => {return match.status === "LIVE" || match.status === "IN_PLAY"});
-      // Ongoing matches, probably SCHEDULEDs are good for this 
-      let othermatches = matches.matches.filter((match: any) => {return match.status === "SCHEDULED"});
-      this.otherMatches = othermatches.map((match:any) => {
+      let livematches = matches.matches.filter((match: any) => {return match.status === "LIVE" || match.status === "IN_PLAY"});
+      this.liveMatches = livematches.map((match) => {
         let data: Match = {homeTeam: '', awayTeam: '', date: {}};
         data.awayTeam = match.awayTeam.name;
         data.homeTeam = match.homeTeam.name;
-        data.date = match.utcDate;
+        let dateNtime = new Date(match.utcDate);
+        let date = dateNtime.getFullYear()+'-'+(dateNtime.getMonth()+1)+'-'+dateNtime.getDate();
+        let time = dateNtime.getHours() + ":" + (dateNtime.getMinutes() === 0 ? '00' : dateNtime.getMinutes());
+        data.date = date + ' ' + time;
+        return data;
+      })
+      // Ongoing matches, probably SCHEDULEDs are good for this 
+      let othermatches = matches.matches.filter((match: any) => {return match.status === "SCHEDULED"});
+      this.otherMatches = othermatches.map((match:any) => {
+        let data: Match = {homeTeam: '', awayTeam: '', date: {}, id: ''};
+        data.awayTeam = match.awayTeam.name;
+        data.homeTeam = match.homeTeam.name;
+        let dateNtime = new Date(match.utcDate);
+        let date = dateNtime.getFullYear()+'-'+(dateNtime.getMonth()+1)+'-'+dateNtime.getDate();
+        let time = dateNtime.getHours() + ":" + (dateNtime.getMinutes() === 0 ? '00' : dateNtime.getMinutes());
+        data.date = date + ' ' + time;
+        data.id = match.id;
         return data;
       });
-      console.log(this.otherMatches);
+      this.isOngoingEmpty = this.otherMatches.length === 0;
       this.isLiveEmpty = this.liveMatches.length === 0;
     });
   }

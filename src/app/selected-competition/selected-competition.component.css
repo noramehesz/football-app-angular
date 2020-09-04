@@ -1,12 +1,13 @@
 .selectedCompetitionDiv {
     margin-left: 10px;
-    margin: 10px;
-    padding: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding-top: 10px;
     border-radius: 3px;
     background: #313A3A3A;
     padding-left: 0;
     padding-right: 0;
-    
+    margin-bottom: 0;
 }
 
 .selectedName {
@@ -75,6 +76,7 @@
 
 .noLiveMatch {
     font-family: fantasy;
+    margin-left: 10px;
 }
 
 .OngoingUl {
@@ -83,6 +85,7 @@
     padding-left: 0;
     margin-top: 0;
     background-color: #A8A8A83A;
+    margin-bottom: 0;
 }
 
 .oneMatchDiv {

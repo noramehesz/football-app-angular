@@ -11,14 +11,25 @@
     </div>
   </div>
   <div *ngIf="matches" class="matchesList">
-    <ul *ngIf="showLiveMathes">
+    <ul *ngIf="showLiveMathes" class="OngoingUl">
       <li *ngFor="let match of liveMatches">
-        <a routerLink="/{{competitionName}}/{{match.id}}"> 
-          HomeTeam: {{ match.homeTeam.name }} AwayTeam: {{ match.awayTeam.name }} 
-        </a>
+        <div [routerLink]="'/'+competitionName+'/'+match.id" class="oneMatchDiv">
+          <span class="topSpan">
+            FOOTBALL
+          </span>
+          <span class="TeamSpan"> 
+            {{ match.homeTeam }} 
+          </span>
+          <span class="TeamSpan">
+            {{ match.awayTeam }}
+          </span>
+          <span class="dateSpan">
+            {{ match.date }}
+          </span>
+        </div>  
       </li>
       <span *ngIf="isLiveEmpty" class="noLiveMatch">
-          Currently there is no live match
+        Currently there is no live match
       </span>
     </ul>
     <ul *ngIf="!showLiveMathes" class="OngoingUl">
@@ -38,6 +49,9 @@
           </span>
         </div>  
         </li>
+        <span *ngIf="isOngoingEmpty" class="noLiveMatch">
+          Currently there is no ongoing match
+        </span>
     </ul>
   </div>
 </div>
