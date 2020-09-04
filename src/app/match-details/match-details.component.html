@@ -1,1 +1,58 @@
-<p>{{competitionName}}</p>
+<div class="detailsMainDiv">
+    <div class="matchDetailsDiv">
+        <h2 class="detailsH2">
+            MATCH DETAILS
+        </h2>
+    </div>
+    <div class="detailsData">
+        <span class="competitionData"> {{matchDetails.competitionName}}</span>
+        <span class="statusData"> {{matchDetails.status}} </span>
+        <div class="otherData">
+            <div class="detailedDatas">
+                <span class="topData">DATE</span>
+                <span class="teams">{{matchDetails.date}}</span>
+                <span class="topData">TIME</span>
+                <span class="teams">
+                    {{
+                        matchDetails.minute ? getHalf(matchDetails.minute) : "NOT AVAILABLE"
+                    }}
+                </span>
+                <span class="topData">MATCH CLOCK</span>
+                <span class="teams">{{matchDetails.minute ? matchDetails.minute : "NOT AVAILABLE"}}</span>
+                <span class="topData">SCORE</span>
+                <span class="teams">
+                   Winner: {{
+                        matchDetails.score.winner? matchDetails.score.winner : "NOT AVAILABLE"
+                    }}
+                </span>
+                <span class="teams">
+                    Extra Time: 
+                </span>
+                <span class="subDetail">
+                    Home team: {{matchDetails.score.extraTime.homeTeam ? matchDetails.score.extraTime.homeTeam : '-'}} 
+                    Away team: {{matchDetails.score.extraTime.awayteam ? matchDetails.score.extraTime.homeTeam : '-'}}
+                </span>
+                <span class="teams">
+                    Full Time: 
+                </span>
+                <span class="subDetail">
+                    Home team: {{matchDetails.score.fullTime.homeTeam ? matchDetails.score.fullTime.homeTeam : '-'}} 
+                    Away team: {{matchDetails.score.fullTime.awayteam ? matchDetails.score.fullTime.homeTeam : '-'}}
+                </span>
+                <span class="teams">
+                    Half Time: 
+                </span>
+                <span class="subDetail">
+                    Home team: {{matchDetails.score.halfTime.homeTeam ? matchDetails.score.halfTime.homeTeam : '-'}} 
+                    Away team: {{matchDetails.score.halfTime.awayteam ? matchDetails.score.halfTime.homeTeam : '-'}}
+                </span>
+            </div>
+            <div class="detailedDatas" [ngClass]="{'teamsDetails': true}">
+                <span class="topData">HOME TEAM</span>
+                <span class="teams"> {{matchDetails.teams.homeTeam}} </span>
+                <span class="topData">AWAY TEAM</span>
+                <span class="teams"> {{matchDetails.teams.awayTeam}} </span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,86 @@
-body {
+.detailsMainDiv {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-radius: 3px;
+    background: #313A3A3A;
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 0;
+}
+
+.matchDetailsDiv {
+    margin-block-start: 0;
+    font-family: sans-serif;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    border-bottom: 1px solid #313A3A;
+    padding-bottom: 5px;
+}
+
+.detailsH2 {
     margin: 0;
+    font-family: sans-serif;
+    font-size: 15px;
+}
+
+.detailsData {
+    display: flex;
+    flex-direction: column;
+}
+
+.statusData {
+    align-self: center;
+    color: rgb(206, 155, 67);
+    font-family: sans-serif;
+    padding-top: 5px;
+    font-size: small;
+}
+
+.competitionData {
+    align-self: center;
+    font-family: sans-serif;
+    padding-top: 10px;
+    font-size: x-large;
+    color: darkgrey;
+}
+
+.otherData {
+    display: flex;
+}
+
+.detailedDatas {
+    width: 50%;
+    height: max-content;
+    margin: 5px;
+    background-color: #A8A8A83A;
+    border-radius: 3px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.teams {
+    color: white;
+    font-family: sans-serif;
+    padding-bottom: 10px;
+    padding-left: 5px;
+}
+
+.topData {
+    font-family: sans-serif;
+    font-size: x-small;
+    color: bisque;
+    padding-bottom: 5px;
+}
+
+.subDetail {
+    margin-left: 15px;
+    font-family: sans-serif;
+    color: white;
+    font-size: small;
+    margin-bottom: 5px;
 }

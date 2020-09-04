@@ -45,7 +45,7 @@ export class MatchDetailsComponent implements OnInit {
     this.competitionService.getMatchDetailsById(id).subscribe((details: any) => {
       console.log(details);
         let data: MatchDetails = {};
-        data.competitionName = `${details.match.awayTeam.name} vs ${details.match.homeTeam.name}`
+        data.competitionName = details.match.competition.name;
         data.date = details.match.utcDate;
         data.minute = details.match.minute == null ? 0 : details.minute;
         data.score = details.match.score;
@@ -53,9 +53,16 @@ export class MatchDetailsComponent implements OnInit {
         data.teams = {homeTeam: '', awayTeam: ''};
         data.teams.homeTeam = details.match.homeTeam.name;
         data.teams.awayTeam = details.match.awayTeam.name; 
+        let dateNtime = new Date(details.match.utcDate);
+        let date = dateNtime.getFullYear()+'-'+(dateNtime.getMonth()+1)+'-'+dateNtime.getDate();
+        let time = dateNtime.getHours() + ":" + (dateNtime.getMinutes() === 0 ? '00' : dateNtime.getMinutes());
+        data.date = date + ' ' + time;
         this.matchDetails = data;
       }
     )
   }
 
+  getHalf(minute: number) {
+    return minute <= 45 ? "First Half" : "Second Half";
+  }
 }
